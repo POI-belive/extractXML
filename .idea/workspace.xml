@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="affd5044-f6a7-4260-a51f-da8458b3a23a" name="Changes" comment="前端构建">
-      <change beforePath="$PROJECT_DIR$/.idea/del_xml.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/del_xml.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="affd5044-f6a7-4260-a51f-da8458b3a23a" name="Changes" comment="直接拖入即可运行">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/danmu.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/extractXML.pyw" beforeDir="false" afterPath="$PROJECT_DIR$/extractXML.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/main_windows.pyw" beforeDir="false" afterPath="$PROJECT_DIR$/main_windows.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_windows.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_windows.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,12 +222,21 @@
       <option name="project" value="LOCAL" />
       <updated>1744216913819</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="直接拖入即可运行">
+      <option name="closed" value="true" />
+      <created>1744254325333</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1744254325333</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="后端构建" />
     <MESSAGE value="前端构建" />
-    <option name="LAST_COMMIT_MESSAGE" value="前端构建" />
+    <MESSAGE value="直接拖入即可运行" />
+    <option name="LAST_COMMIT_MESSAGE" value="直接拖入即可运行" />
   </component>
 </project>

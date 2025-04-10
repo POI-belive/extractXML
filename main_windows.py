@@ -1,5 +1,7 @@
 import os
 import sys
+
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTextEdit, QPushButton, QVBoxLayout, QWidget, QDesktopWidget
 
 from extractXML import extract_xml, save_csv
@@ -15,56 +17,58 @@ from extractXML import extract_xml, save_csv
 class DragDropTextEdit(QTextEdit):
     def __init__(self, parent=None):
         super(DragDropTextEdit, self).__init__(parent)
-        self.setAcceptDrops(True)  # 定义的 DragDropTextEdit 类的构造函数中调用的方法，它的作用是启用该文本编辑框接受拖拽操作。
+        self.setAcceptDrops(True)  # 启用拖拽
+        self.setPlaceholderText("拖拽文件到此处，或粘贴文件路径后按 Enter")  # 提示信息
 
-    # 当用户拖拽文件或其他可拖拽的内容进入文本编辑框时，这个方法会被触发
     def dragEnterEvent(self, event):
-        # 仅当拖入的是单个文件时才接受
         if event.mimeData().hasUrls() and len(event.mimeData().urls()) == 1:
             event.accept()
         else:
             event.ignore()
 
-    def dropEvent(self, event):  # 当用户释放鼠标按钮时，这个方法会被触发，用于处理拖拽事件。在这个方法中，你可以获取拖拽事件中的文件路径。
-        # 确保只处理单个文件
+    def dropEvent(self, event):
         urls = event.mimeData().urls()
         if len(urls) == 1:
             file_path = urls[0].toLocalFile()
-            if os.path.isfile(file_path):  # 检查是否是文件（非文件夹）
-                self.clear()  # 清空原有内容
-                self.append(file_path)  # 显示当前文件路径
-
-                try:
-                    # 获取文件路径（正确处理换行符）
-                    file_path = self.toPlainText().strip()  # 去除首尾空白字符
-
-                    if not file_path:  # 检查是否为空
-                        print("错误：未拖入文件！")
-                        return
-
-                    if not os.path.exists(file_path):  # 检查文件是否存在
-                        print(f"错误：文件不存在 - {file_path}")
-                        return
-
-                    # 处理文件
-                    csv_path = ".//output//danmu.csv"
-
-                    # 确保输出目录存在
-                    os.makedirs(os.path.dirname(csv_path), exist_ok=True)
-
-                    # 提取和保存数据
-                    text_list = extract_xml(file_path)
-                    save_csv(text_list, csv_path)
-
-                    print(f"处理完成！源文件: {file_path}")
-                    print(f"CSV保存到: {csv_path}")
-
-                except Exception as e:
-                    print(f"处理失败: {str(e)}")
-                    # 可以添加QMessageBox显示错误信息
-
+            if os.path.isfile(file_path):
+                self.clear()
+                self.append(file_path)
+                self.process_file(file_path)  # 直接处理文件（可选）
         else:
             print("警告：仅支持拖入单个文件！")
+
+    def keyPressEvent(self, event):
+        # 如果按下 Enter 键，则处理当前文本（文件路径）
+        if event.key() == Qt.Key_Return or event.key() == Qt.Key_Enter:
+            file_path = self.toPlainText().strip()
+            if file_path:
+                self.process_file(file_path)
+        else:
+            super().keyPressEvent(event)  # 其他按键正常处理
+
+    def process_file(self, file_path):
+        """处理文件路径（提取数据并保存 CSV）"""
+        try:
+            # 去除 file:// 前缀（如果存在）
+            if file_path.startswith("file:///"):
+                file_path = file_path[8:]  # 去除前8个字符（file://）
+
+            # 检查文件是否存在
+            if not os.path.exists(file_path):
+                print(f"错误：文件不存在 - {file_path}")
+                return
+
+            csv_path = ".//output//danmu.csv"
+            os.makedirs(os.path.dirname(csv_path), exist_ok=True)
+
+            text_list = extract_xml(file_path)
+            save_csv(text_list, csv_path)
+
+            print(f"处理完成！源文件: {file_path}")
+            print(f"CSV保存到: {csv_path}")
+
+        except Exception as e:
+            print(f"处理失败: {str(e)}")
 
 
 class MainApp(QMainWindow):  # 创建实例化类
@@ -98,34 +102,9 @@ class MainApp(QMainWindow):  # 创建实例化类
         display.addWidget(self.submit_Button)  # 展示出提交按钮
 
     def processFiles(self):
-        try:
-            # 获取文件路径（正确处理换行符）
-            file_path = self.textEdit.toPlainText().strip()  # 去除首尾空白字符
-
-            if not file_path:  # 检查是否为空
-                print("错误：未拖入文件！")
-                return
-
-            if not os.path.exists(file_path):  # 检查文件是否存在
-                print(f"错误：文件不存在 - {file_path}")
-                return
-
-            # 处理文件
-            csv_path = ".//output//danmu.csv"
-
-            # 确保输出目录存在
-            os.makedirs(os.path.dirname(csv_path), exist_ok=True)
-
-            # 提取和保存数据
-            text_list = extract_xml(file_path)
-            save_csv(text_list, csv_path)
-
-            print(f"处理完成！源文件: {file_path}")
-            print(f"CSV保存到: {csv_path}")
-
-        except Exception as e:
-            print(f"处理失败: {str(e)}")
-            # 可以添加QMessageBox显示错误信息
+        file_path = self.textEdit.toPlainText().strip()
+        if file_path:
+            self.textEdit.process_file(file_path)
 
 
 
