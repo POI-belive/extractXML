@@ -33,6 +33,36 @@ class DragDropTextEdit(QTextEdit):
             if os.path.isfile(file_path):  # 检查是否是文件（非文件夹）
                 self.clear()  # 清空原有内容
                 self.append(file_path)  # 显示当前文件路径
+
+                try:
+                    # 获取文件路径（正确处理换行符）
+                    file_path = self.toPlainText().strip()  # 去除首尾空白字符
+
+                    if not file_path:  # 检查是否为空
+                        print("错误：未拖入文件！")
+                        return
+
+                    if not os.path.exists(file_path):  # 检查文件是否存在
+                        print(f"错误：文件不存在 - {file_path}")
+                        return
+
+                    # 处理文件
+                    csv_path = ".//output//danmu.csv"
+
+                    # 确保输出目录存在
+                    os.makedirs(os.path.dirname(csv_path), exist_ok=True)
+
+                    # 提取和保存数据
+                    text_list = extract_xml(file_path)
+                    save_csv(text_list, csv_path)
+
+                    print(f"处理完成！源文件: {file_path}")
+                    print(f"CSV保存到: {csv_path}")
+
+                except Exception as e:
+                    print(f"处理失败: {str(e)}")
+                    # 可以添加QMessageBox显示错误信息
+
         else:
             print("警告：仅支持拖入单个文件！")
 
@@ -81,7 +111,7 @@ class MainApp(QMainWindow):  # 创建实例化类
                 return
 
             # 处理文件
-            csv_path = "..//output//danmu.csv"
+            csv_path = ".//output//danmu.csv"
 
             # 确保输出目录存在
             os.makedirs(os.path.dirname(csv_path), exist_ok=True)
