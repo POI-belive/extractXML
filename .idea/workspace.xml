@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="affd5044-f6a7-4260-a51f-da8458b3a23a" name="Changes" comment="添加了更适合盲人的复制添加方式">
+    <list default="true" id="affd5044-f6a7-4260-a51f-da8458b3a23a" name="Changes" comment="排版代码，做上传准备">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extractXML.py" beforeDir="false" afterPath="$PROJECT_DIR$/extractXML.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_windows.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_windows.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +22,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "POI-belive"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/POI-belive/extractXML.git",
+    "accountId": "3d8076e7-fcd4-4b6b-aeb7-1359b11c37e9"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -239,14 +249,34 @@
       <option name="project" value="LOCAL" />
       <updated>1744260553031</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="排版代码，做上传准备">
+      <option name="closed" value="true" />
+      <created>1744467340276</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1744467340276</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="后端构建" />
     <MESSAGE value="前端构建" />
     <MESSAGE value="直接拖入即可运行" />
     <MESSAGE value="添加了更适合盲人的复制添加方式" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了更适合盲人的复制添加方式" />
+    <MESSAGE value="排版代码，做上传准备" />
+    <option name="LAST_COMMIT_MESSAGE" value="排版代码，做上传准备" />
   </component>
 </project>
