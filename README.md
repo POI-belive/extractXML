@@ -1,0 +1,2 @@
+# extractXML
+将下载下来的B站弹幕xml文件的弹幕提取出来并读入csv中
