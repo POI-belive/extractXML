@@ -23,6 +23,7 @@ def save_csv(text_list,csv_file_path):
         for idx,text in enumerate(text_list,1):
             writer.writerow([idx,text])
 
+#测试方法
 if __name__ == '__main__':
     xml_file_path = "D://pythonFile//del_xml//test.xml"
     csv_file_path="D://pythonFile//del_xml//danmu.csv"
